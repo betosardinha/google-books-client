@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  google_books_client:
+    tty: true
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    working_dir: /google_books_client
+    command: make gem-startup
+    volumes:
+      - .:/google_books_client
