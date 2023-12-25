@@ -3,8 +3,7 @@ name: Ruby Gem
 on:
   release:
     branches: [main]
-    types:
-      - published
+    types: [published]
 
 jobs:
   release:
