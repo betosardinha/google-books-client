@@ -3,7 +3,8 @@ name: Ruby Gem
 on:
   release:
     branches: [main]
-    types: [published]
+    types:
+      - published
 
 jobs:
   release:
@@ -28,4 +29,3 @@ jobs:
           printf -- "---\n:github: ${RUBYGEMS_API_KEY}\n" >
         env:
           RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
-```
