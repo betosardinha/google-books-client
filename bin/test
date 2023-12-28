@@ -5,3 +5,4 @@ set -vx
 
 bundle exec rubocop --format progress -A
 bundle exec rspec
+bundle exec undercover

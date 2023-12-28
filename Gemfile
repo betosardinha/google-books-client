@@ -18,5 +18,6 @@ group :development do
   gem "rubocop-rspec", "~> 2.25"
   gem "simplecov", "~> 0.22.0"
   gem "simplecov-lcov", "~> 0.8.0"
+  gem "undercover", "~> 0.4.6"
   gem "webmock", "~> 3.19", ">= 3.19.1"
 end
