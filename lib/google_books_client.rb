@@ -6,6 +6,7 @@ require "active_support/core_ext/hash"
 
 require_relative "google_books_client/version"
 require_relative "google_books_client/configuration"
+require_relative "google_books_client/models"
 
 module GoogleBooksClient
   class Error < StandardError; end

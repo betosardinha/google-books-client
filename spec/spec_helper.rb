@@ -3,6 +3,7 @@
 require "pry"
 require "simplecov"
 require "simplecov-lcov"
+require "undercover"
 require "webmock/rspec"
 require "active_support"
 require "active_support/testing/time_helpers"
