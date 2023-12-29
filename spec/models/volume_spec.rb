@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class BookSerializer < GoogleBooksClient::Models::Book
+class VolumeSerializer < GoogleBooksClient::Models::Volume
   def id
     "123"
   end
@@ -26,10 +26,11 @@ class BookSerializer < GoogleBooksClient::Models::Book
   end
 end
 
-RSpec.describe GoogleBooksClient::Models::Book do
+RSpec.describe GoogleBooksClient::Models::Volume do
   it_behaves_like "a serializer model" do
-    let(:serializer) { BookSerializer }
+    let(:serializer) { VolumeSerializer }
     let(:required_fields) { %i[id kind volume_info] }
+    let(:additional_params) { { "aditional_param" => "value" } }
     let(:expected_json) do
       {
         "id" => "123",
@@ -39,7 +40,7 @@ RSpec.describe GoogleBooksClient::Models::Book do
           "authors" => ["F. Scott Fitzgerald"],
           "publisher" => "Scribner",
           "published_date" => "2003-05-27"
-        }
+        },
       }
     end
 

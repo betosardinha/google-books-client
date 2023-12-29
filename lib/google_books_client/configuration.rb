@@ -1,21 +1,37 @@
 # frozen_string_literal: true
 
+require "logger"
+
 module GoogleBooksClient
   class Configuration
-    attr_accessor :token, :host, :api_version, :api_schema_registry
+    attr_writer :api_name, :api_version, :cacher, :host, :logger, :max_results, :timeout
 
-    attr_writer :cacher, :logger, :timeout
+    def api_host
+      "#{host}/#{api_name}/#{api_version}"
+    end
+
+    def api_name
+      @api_name || default_api_name
+    end
+
+    def api_version
+      @api_version || default_api_version
+    end
 
     def cacher
       @cacher || default_cacher
+    end
+
+    def host
+      @host || default_host
     end
 
     def logger
       @logger || default_logger
     end
 
-    def api_host
-      "#{host}/api/#{api_version}"
+    def max_results
+      @max_results || 10
     end
 
     def timeout
@@ -24,8 +40,20 @@ module GoogleBooksClient
 
     private
 
+    def default_api_name
+      "books"
+    end
+
+    def default_api_version
+      "v1"
+    end
+
     def default_cacher
       @default_cacher ||= ActiveSupport::Cache::MemoryStore.new
+    end
+
+    def default_host
+      "https://www.googleapis.com"
     end
 
     def default_logger

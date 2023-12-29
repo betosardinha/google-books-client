@@ -13,14 +13,14 @@ RSpec.describe GoogleBooksClient do
     let(:config) { described_class.configuration }
 
     it "returns expected configuration" do
-      expect(config.token).to eq("token")
-      expect(config.host).to eq("host")
+      expect(config.api_host).to eq("https://www.googleapis.com/books/v1")
+      expect(config.api_name).to eq("books")
       expect(config.api_version).to eq("v1")
-      expect(config.api_schema_registry).to eq("api_schema_registry")
-      expect(config.api_host).to eq("host/api/v1")
-      expect(config.timeout).to eq(20)
-      expect(config.logger).to be_instance_of(Logger)
       expect(config.cacher).to be_instance_of(ActiveSupport::Cache::MemoryStore)
+      expect(config.host).to eq("https://www.googleapis.com")
+      expect(config.logger).to be_instance_of(Logger)
+      expect(config.max_results).to eq(10)
+      expect(config.timeout).to eq(20)
     end
   end
 end

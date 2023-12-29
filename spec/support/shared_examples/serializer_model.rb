@@ -1,21 +1,15 @@
 # frozen_string_literal: true
 
 RSpec.shared_examples "a serializer model" do
-  describe "#initialize" do
-    let(:args) { { foo: "bar" } }
+  describe ".serialize_all" do
+    let(:entities) { [Object.new, Object.new] }
 
-    it "initializes the model with the given entity and args" do
-      expect(serializer.new(Object.new, args).send(:args)).to eq(args)
+    it "returns json with required and optional fields" do
+      expect(serializer.serialize_all(entities)).to eq([expected_json.merge(optional_json)] * 2)
     end
   end
 
-  describe "#required_fields" do
-    it "returns an array of required fields" do
-      expect(serializer.new(Object.new).required_fields).to eq(required_fields)
-    end
-  end
-
-  describe "#serialize" do
+  describe ".serialize" do
     it "returns json with required and optional fields" do
       expect(serializer.serialize(Object.new)).to eq(expected_json.merge(optional_json))
     end
@@ -25,6 +19,14 @@ RSpec.shared_examples "a serializer model" do
 
       it "returns json with required fields only" do
         expect(serializer.serialize(Object.new)).to eq(expected_json)
+      end
+    end
+
+    context "when more than one entity is passed" do
+      let(:entities) { [Object.new, Object.new] }
+
+      it "returns json with required and optional fields" do
+        expect(serializer.serialize(entities)).to eq([expected_json.merge(optional_json)] * 2)
       end
     end
 
@@ -49,6 +51,42 @@ RSpec.shared_examples "a serializer model" do
 
       it "raises a NoMethodError" do
         expect { serializer.serialize(Object.new) }.to raise_error(NoMethodError, expected_message)
+      end
+    end
+  end
+
+  describe "#required_fields" do
+    it "returns an array of required fields" do
+      expect(serializer.new(Object.new).required_fields).to eq(required_fields)
+    end
+
+    context "when required_fields is not implemented" do
+      let(:expected_message) { "You must implement #{serializer}#required_fields" }
+
+      let(:serializer) { Class.new(GoogleBooksClient::Models::Base) }
+
+      it "raises a NoMethodError" do
+        expect { serializer.new(Object.new).required_fields }.to raise_error(NoMethodError, expected_message)
+      end
+    end
+  end
+
+  describe "#optional_fields" do
+    context "when optional_fields is not implemented" do
+      let(:serializer) { Class.new(GoogleBooksClient::Models::Base) }
+
+      it "returns an empty hash" do
+        expect(serializer.new(Object.new).optional_fields).to eq({})
+      end
+    end
+  end
+
+  describe "#default_additional_params" do
+    context "when default_additional_params is not implemented" do
+      let(:serializer) { Class.new(GoogleBooksClient::Models::Base) }
+
+      it "returns an empty hash" do
+        expect(serializer.new(Object.new).default_additional_params).to eq({})
       end
     end
   end

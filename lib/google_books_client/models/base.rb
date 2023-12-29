@@ -5,19 +5,14 @@ require "delegate"
 module GoogleBooksClient
   module Models
     class Base < SimpleDelegator
-      def initialize(entity, args = {})
-        super(entity)
-        @args = args
-      end
-
-      def self.serialize(entity, args = {})
+      def self.serialize(entity)
         return serialize_all(entity) if entity.respond_to?(:each)
 
-        new(entity, args).as_json
+        new(entity).as_json
       end
 
       def self.serialize_all(entities)
-        entities.map { |entity, args| serialize(entity, args) }
+        entities.map { |entity| serialize(entity) }
       end
 
       def as_json
@@ -25,7 +20,7 @@ module GoogleBooksClient
           hash.merge!(optional_fields)
 
           default_additional_params.each do |key, value|
-            next hash.store(key, value) if hash[key].is_a?(Hash)
+            next hash[key].merge!(value) if hash[key].is_a?(Hash)
 
             hash[key] = value
           end
@@ -45,8 +40,6 @@ module GoogleBooksClient
       end
 
       private
-
-      attr_reader :args
 
       def required_fields_hash
         validate_presence_of_required_fields!

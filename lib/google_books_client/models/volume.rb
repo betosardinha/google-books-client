@@ -2,7 +2,7 @@
 
 module GoogleBooksClient
   module Models
-    class Book < Base
+    class Volume < Base
       def required_fields
         %i[id kind volume_info]
       end
