@@ -4,14 +4,14 @@ require "logger"
 
 module GoogleBooksClient
   class Configuration
-    attr_writer :api_name, :api_version, :cacher, :host, :logger, :max_results, :timeout
+    attr_writer :api_version, :cacher, :logger, :max_results, :timeout
 
     def api_host
       "#{host}/#{api_name}/#{api_version}"
     end
 
     def api_name
-      @api_name || default_api_name
+      default_api_name
     end
 
     def api_version
@@ -23,7 +23,7 @@ module GoogleBooksClient
     end
 
     def host
-      @host || default_host
+      default_host
     end
 
     def logger
