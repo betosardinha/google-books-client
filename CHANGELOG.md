@@ -6,6 +6,5 @@
 
 - Add support to models:
   - Volume.
-  - SubscriptionConfig.
 - Add support to resources:
   - Volumes.
