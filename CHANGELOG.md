@@ -8,3 +8,9 @@
   - Volume.
 - Add support to resources:
   - Volumes.
+
+## [v0.1.1](https://github.com/betosardinha/google_books_client/releases/tag/v0.1.1) (2023-12-29)
+
+### Features
+
+- Fix gemspec links

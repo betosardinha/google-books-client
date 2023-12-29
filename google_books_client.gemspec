@@ -5,19 +5,21 @@ require_relative "lib/google_books_client/version"
 Gem::Specification.new do |spec|
   spec.name = GoogleBooksClient::NAME
   spec.version = GoogleBooksClient::VERSION
-  spec.authors = ["Beto Sardinha"]
-  spec.email = ["sardinhabeto55@gmail.com"]
-
   spec.summary = "A simple client for Google Books API."
-  spec.homepage = "https://github.com/betosardinha/google_books_client"
-  spec.license = "MIT"
-  spec.required_ruby_version = ">= 2.6.0"
+  spec.description = "A simple client for Google Books API. Provides a interface for searching and serializing volumes."
 
-  spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
+  spec.homepage = "https://github.com/betosardinha/google_books_client"
+  spec.required_ruby_version = ">= 2.6.0"
+  spec.license = "MIT"
+
+  spec.author = "Beto Sardinha"
+  spec.email = "sardinhabeto55@gmail.com"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "TODO: Put your gem's public repo URL here."
-  spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
+  spec.metadata["changelog_uri"] = "https://github.com/betosardinha/google_books_client/blob/main/CHANGELOG.md"
+  spec.metadata["documentation_uri"] = "https://github.com/betosardinha/google_books_client/blob/main/README.md"
+  spec.metadata["source_code_uri"] = "https://github.com/betosardinha/google_books_client/tree/v#{GoogleBooksClient::VERSION}"
+  spec.metadata["bug_tracker_uri"] = "https://github.com/betosardinha/google_books_client/issues"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.

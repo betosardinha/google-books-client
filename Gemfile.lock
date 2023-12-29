@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    google_books_client (0.1.0)
+    google_books_client (0.1.1)
       activesupport (~> 7.1, >= 7.1.2)
       faraday (~> 2.8, >= 2.8.1)
       json_schemer (~> 2.1, >= 2.1.1)
